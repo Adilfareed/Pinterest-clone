@@ -4,13 +4,20 @@ var usermodel = require("./users");
 const session = require("express-session");
 const passport = require("passport");
 const localStrategy = require("passport-local");
-passport.authenticate(new localStrategy(usermodel.authenticate()));
+passport.use(new localStrategy(usermodel.authenticate()));
 
 router.get("/", function (req, res) {
   res.render("index");
 });
+router.get("/login", function (req, res) {
+  res.render("login");
+});
+router.get("/feed", function (req, res) {
+  res.render("feed");
+});
+
 router.get("/profile", isLoggedIn, function (req, res) {
-  res.send("this is profile");
+  res.render("profile");
 });
 router.post("/register", function (req, res) {
   var userdata = new usermodel({
@@ -35,9 +42,9 @@ router.post("/login",
   }),
   function (req, res) {}
 );
-router.post("/logout", function (req, res, next) {
+router.get("/logout", function (req, res, next) {
   req.logout(function (err) {
-    if (err) return next(err);
+    if (err) {return next(err);}
     res.redirect("/");
   });
 });

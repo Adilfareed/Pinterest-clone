@@ -10,7 +10,7 @@
   .container {
     background-color: white;
     width: 480px;
-    min-height: 650px;
+    min-height: 450px;
     position: absolute;
     margin: auto;
     top: 60%;
