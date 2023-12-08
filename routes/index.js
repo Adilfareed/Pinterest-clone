@@ -1,4 +1,4 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 var usermodel = require("./users");
 const session = require("express-session");
@@ -10,41 +10,47 @@ router.get("/", function (req, res) {
   res.render("index");
 });
 router.get("/login", function (req, res) {
-  res.render("login");
+  res.render("login", { error: req.flash("error") });
 });
 router.get("/feed", function (req, res) {
   res.render("feed");
 });
 
-router.get("/profile", isLoggedIn, function (req, res) {
-  res.render("profile");
+router.get("/profile", isLoggedIn, async function (req, res) {
+  
+  user = await usermodel.findOne(
+    { username: req.session.passport.user });
+    res.render("profile"),{user};
 });
 router.post("/register", function (req, res) {
   var userdata = new usermodel({
     username: req.body.username,
     email: req.body.email,
-    fullname : req.body.fullname,
-   
-    
+    fullname: req.body.fullname,
   });
-  
-  usermodel.register(userdata, req.body.password)
+
+  usermodel
+    .register(userdata, req.body.password)
     .then(function (registereduser) {
       passport.authenticate("local")(req, res, function () {
         res.redirect("/profile");
       });
     });
 });
-router.post("/login",
+router.post(
+  "/login",
   passport.authenticate("local", {
     successRedirect: "/profile",
-    failureRedirect: "/",
+    failureRedirect: "/login",
+    failureFlash: true,
   }),
   function (req, res) {}
 );
 router.get("/logout", function (req, res, next) {
   req.logout(function (err) {
-    if (err) {return next(err);}
+    if (err) {
+      return next(err);
+    }
     res.redirect("/");
   });
 });

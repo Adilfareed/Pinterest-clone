@@ -245,3 +245,24 @@
       max-width: 26rem;
     }
   }
+  .btn {
+    width: 100%;
+    height: 80px;
+    color: black;
+    border-radius: 20px;
+    font-size: 20px;
+    margin: 5px 0px;
+    align-items: flex-end;
+  }
+  
+  .int {
+    background-color: #f30d19;
+    margin: 10px 0px;
+    color: rgb(7, 2, 2);
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .int:hover{
+    background-color: #df0812;
+  }
