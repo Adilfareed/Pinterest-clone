@@ -22,6 +22,8 @@
   .about-dev {
     width: 100%;
     max-width: 26rem;
+   
+
     margin: auto;
     box-shadow: 2px 4px 2px -2px rgba(0, 0, 0, .3), -2px -4px 15px -2px rgba(0, 0, 0, .2);
     animation: profile_in 0.8s;
@@ -47,8 +49,8 @@
   }
   
   .profile-card_header {
-    background: #272727;
-    border-left: 0.625rem solid #97ece1;
+    
+    color: #222;
     padding: 1.5em 1.5em 1em;
     text-align: center;
   }
@@ -63,8 +65,8 @@
     overflow: hidden;
     border-radius: 50%;
     margin: auto;
-    background: rgba(250, 214, 195, 1);
-    border: 0.375rem solid rgba(250, 214, 195, 1);
+    background: rgb(243, 240, 239);
+    border: 0.375rem solid rgb(248, 244, 242);
   }
   
   .profile-card_header img {
@@ -76,7 +78,7 @@
   /* header heading */
   
   .profile-card_header h1 {
-    color: #f3f3f3;
+    color: #070101;
     font-size: 1.5rem;
     margin-top: 0.8em;
     font-family: 'Oswald', sans-serif;
@@ -91,10 +93,10 @@
     font-size: 1.2rem;
     font-weight: 300;
     display: block;
-    color: rgba(220, 220, 220, .95);
+    color: rgba(12, 0, 0, 0.95);
     margin-top: 0.25em;
     padding-top: 0.25em;
-    border-top: 0.075em solid rgba(250, 214, 195, 1);
+    border-top: 0.075em solid rgb(247, 244, 243);
   }
   
   
@@ -102,7 +104,7 @@
   
   .profile-card_about {
     line-height: 1.5;
-    background: #ededed;
+    background: #f4f1f1;
     padding: 1.5em 2rem;
     color: #222;
     font-family: 'Lato', sans-serif;
@@ -207,19 +209,30 @@
   @media screen and (max-width: 26em) {
     .side_wrapper {
       min-height: 100vh;
-      background: #ededed;
+      background: #ffffff;
     }
     .about-dev {
       box-shadow: none;
     }
   }
-  .card{
-    background-color: rgb(232, 231, 231);
-    border: 2px solid gray;
+  .card22{
     display: flex;
-    justify-content: center;
-    flex-flow: column;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: start;
+    flex-direction: row;
+  
+   
+  }
+  .card{
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+   flex-direction: column;
+    
+    width: 150px;
+    height: 150px;
+    gap: 20px;
       }
   
   @media screen and (min-width: 33em) {
@@ -266,3 +279,28 @@
   .int:hover{
     background-color: #df0812;
   }
+#button{
+  width: 100px;
+  height: 40px;
+}
+#logbtn{ width: 100px;
+  height: 40px;
+}
+
+.form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 140px;
+}
+#pencil{
+  
+  cursor: pointer;
+  margin-left: 100px;
+  margin-top: 10px;
+  height: 100px;
+  
+  background-color: white;
+  border: 2px solid white;
+  border-radius:30px;
+}

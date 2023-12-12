@@ -3,8 +3,9 @@ var router = express.Router();
 var usermodel = require("./users");
 const session = require("express-session");
 const passport = require("passport");
-const upload = require("./multer")
+const upload = require("./multer");
 const localStrategy = require("passport-local");
+const postmodel = require("./posts");
 passport.use(new localStrategy(usermodel.authenticate()));
 
 router.get("/", function (req, res) {
@@ -16,19 +17,36 @@ router.get("/login", function (req, res) {
 router.get("/feed", function (req, res) {
   res.render("feed");
 });
-router.post("/upload",upload.single('file'), function (req, res) {
- if(!req.file){
-  return res.status(400).send('no file was uploaded')
- }
- res.send('file uploaded sucessfully');
+router.get("/uploads", function (req, res) {
+  res.render("uploads");
 });
-
+router.post(
+  "/upload",
+  isLoggedIn,
+  upload.single("file"),
+  async function (req, res) {
+    if (!req.file) {
+      return res.status(400).send("no file was uploaded");
+    }
+    const user = await usermodel.findOne({
+      username: req.session.passport.user});
+    const post = await postmodel.create({
+      title: req.body.title,
+      image: req.file.filename,
+      desciption:req.body.description,
+      user: user._id,
+    });
+   
+    user.posts.push(post._id);
+    await user.save();
+    res.redirect("profile");
+  }
+);
 
 router.get("/profile", isLoggedIn, async function (req, res) {
-  
-  user = await usermodel.findOne(
-    { username: req.session.passport.user });
-    res.render("profile"),{user};
+  user = await usermodel.findOne({ username: req.session.passport.user })
+  .populate("posts")
+  res.render("profile"), { user };
 });
 router.post("/register", function (req, res) {
   var userdata = new usermodel({
