@@ -1,12 +1,22 @@
+*{
+    background-color: beige;
+}
 .form-container {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
+    border: 2px solid black;
+    border-radius: 20px;
+    margin-top: 50px;
+    text-transform: capitalize;
+    font-size: larger;
 }
 
 .post-form {
     display: flex;
     flex-direction: column;
+   font-size: larger;
+   font-style: bold ;
 }
 
 label {

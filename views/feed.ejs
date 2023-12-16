@@ -1,111 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="stylesheets/feed.css">
-</head>
-<body>
-    <div class="gallery">
-        <div class="gallery-item">
-          <figure>
-            <img src="https://images.dog.ceo/breeds/hound-english/n02089973_3147.jpg" alt="dog" />
-            <figcaption>Picture of a few dogs having a rest and sleeping.</figcaption>
-          </figure>
-          <p>OMG, seriously how cute are these dogs?</p>
-        </div>
-        <div class="gallery-item">
-          <figure>
-            <img src="https://images.dog.ceo/breeds/poodle-toy/n02113624_1582.jpg" alt="dog" />
-            <figcaption>Caption of the pic</figcaption>
-          </figure>
-          <p>More text about the image</p>
-        </div>
-        <div class="gallery-item">
-          <figure>
-            <img src="https://images.dog.ceo/breeds/pug/n02110958_13794.jpg" alt="dog" />
-            <figcaption>Caption of the pic</figcaption>
-          </figure>
-          <p>More text about the image</p>
-        </div>
-        <div class="gallery-item">
-          <figure>
-            <img src="https://images.dog.ceo/breeds/terrier-australian/n02096294_5504.jpg" alt="dog" />
-            <figcaption>Caption of the pic</figcaption>
-          </figure>
-          <p>More text about the image</p>
-        </div>
-        <div class="gallery-item">
-          <figure>
-            <img src="https://images.dog.ceo/breeds/kelpie/n02105412_1222.jpg" alt="dog" />
-            <figcaption>Picture of a few dogs having a rest and sleeping.</figcaption>
-          </figure>
-          <p>OMG, seriously how cute are these dogs?</p>
-        </div>
-        <div class="gallery-item">
-          <figure>
-            <img src="https://images.dog.ceo/breeds/doberman/n02107142_1193.jpg" alt="dog" />
-            <figcaption>Caption of the pic</figcaption>
-          </figure>
-          <p>More text about the image</p>
-        </div>
-        <div class="gallery-item">
-          <figure>
-            <img src="https://images.dog.ceo/breeds/terrier-russell/iguet4.jpeg" alt="dog" />
-            <figcaption>Caption of the pic</figcaption>
-          </figure>
-          <p>More text about the image</p>
-        </div>
-        <div class="gallery-item">
-          <figure>
-            <img src="https://images.dog.ceo/breeds/newfoundland/n02111277_5292.jpg" alt="dog" />
-            <figcaption>Caption of the pic</figcaption>
-          </figure>
-          <p>More text about the image</p>
-        </div>
-        <div class="gallery-item">
-          <figure>
-            <img src="https://images.dog.ceo/breeds/borzoi/n02090622_266.jpg" alt="dog" />
-            <figcaption>Picture of a few dogs having a rest and sleeping.</figcaption>
-          </figure>
-          <p>OMG, seriously how cute are these dogs?</p>
-        </div>
-        <div class="gallery-item">
-          <figure>
-            <img src="https://images.dog.ceo/breeds/newfoundland/n02111277_11806.jpg" alt="dog" />
-            <figcaption>Caption of the pic</figcaption>
-          </figure>
-          <p>More text about the image</p>
-        </div>
-        <div class="gallery-item">
-          <figure>
-            <img src="https://images.dog.ceo/breeds/poodle-miniature/n02113712_3293.jpg" alt="dog" />
-            <figcaption>Caption of the pic</figcaption>
-          </figure>
-          <p>More text about the image</p>
-        </div>
-        <div class="gallery-item">
-          <figure>
-            <img src="https://images.dog.ceo/breeds/pembroke/n02113023_4881.jpg" alt="dog" />
-            <figcaption>Caption of the pic</figcaption>
-          </figure>
-          <p>More text about the image</p>
-        </div>
-        <div class="gallery-item">
-          <figure>
-            <img src="https://images.dog.ceo/breeds/poodle-standard/n02113799_4946.jpg" alt="dog" />
-            <figcaption>Caption of the pic</figcaption>
-          </figure>
-          <p>More text about the image</p>
-        </div>
-        <div class="gallery-item">
-          <figure>
-            <img src="https://images.dog.ceo/breeds/schnauzer-giant/n02097130_4050.jpg" alt="dog" />
-            <figcaption>Caption of the pic</figcaption>
-          </figure>
-          <p>More text about the image</p>
-        </div>
+  <head>
+    <link rel="stylesheet" href="stylesheets/feed.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="site-name">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png" alt="" 
+          width="50px" height="50px"  >
+         
       </div>
-</body>
+      <div class="navbar-right">
+          
+          <a   href="/login">Login</a>
+          <a   href="/signup">Signup</a>
+          <a   href="/profile">Profile</a>
+      </div>
+  </div>
+      <div class="maintext">    <h1>Get your next idea about Life</h1></div>
+      
+    <div class="card22">
+      <% posts.forEach (function(post){%>
+        <div id="card1" class="card" style="width: 18rem;">
+          <img src="/images/uploads/<%=post.image%>" class="card-img-top" alt="...">
+          <div><h3 id="title" class="card-title"><%=post.title%></h3>
+            <br>
+          <p  class="desciption"><%=post.desciption%></p>
+          <br>
+         
+          
+
+        </div>
+        </div>
+        
+          
+         
+        
+      <% }) %>
+   
+    </div>
+ 
+    
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <footer>
+      <div class="footer">
+      <div class="footerimg">
+  <p class="text2">signup to 
+    <br>get your
+    <br>
+    ideas
+  </p>
+      </div>
+      <div   class=""form>
+        <form action=" /register" method="post">
+          <div class="container">
+            <div class="content">
+            
+              <img src="https://i.pinimg.com/originals/d3/d1/75/d3d175e560ae133f1ed5cd4ec173751a.png" alt="pin logo" class="img1" />
+              <p class="header">Make Account to see more</p>
+        
+              <input type="email" name="email" placeholder="Email" class="detail" />
+              <input type="text" name="username" placeholder="Username" class="detail" />
+              <input type="text" name="fullname" placeholder="Full Name" class="detail" /><br />
+              <input type="password" placeholder="Password" name="password" class="detail" /> 
+              <input  type="submit" class="btn int" value="Register Account"/>
+            </form>
+            <a href="/login" >Already on Pinterest? Login Here</a>
+      </div>
+     </div>
+    </footer>
+
+  </body>
+  
 </html>

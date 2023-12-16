@@ -8,14 +8,19 @@ const localStrategy = require("passport-local");
 const postmodel = require("./posts");
 passport.use(new localStrategy(usermodel.authenticate()));
 
-router.get("/", function (req, res) {
+router.get("/signup", function (req, res) {
   res.render("index");
 });
 router.get("/login", function (req, res) {
   res.render("login", { error: req.flash("error") });
 });
-router.get("/feed", function (req, res) {
-  res.render("feed");
+router.get("/",  async function (req, res ,next) {
+  
+   const posts = await postmodel.find()
+  
+  res.render("feed",{posts});
+
+
 });
 router.get("/uploads", function (req, res) {
   res.render("uploads");
@@ -84,7 +89,7 @@ function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect("/");
+  res.redirect("/signup");
 }
 
 module.exports = router;

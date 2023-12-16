@@ -5,7 +5,47 @@
   html {
     font-size: 100%;
   }
+  .navbar {
+    gap: 10px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    overflow: hidden; /* Added to handle float issues */
+  }
   
+  .navbar a {
+    float: left;
+    display: block;
+    color: #333;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  .navbar a:hover {
+    background-color: rgb(141, 16, 16);
+    color: #f3efef;
+  }
+  
+  .navbar .site-name {
+    float: left;
+  }
+  .pinterest {
+    color: rgb(158, 43, 43);
+    font-size: 30px;
+    font-weight: bolder;
+    margin-top: 5px;
+  }
+  .navbar .navbar-right {
+    float: right;
+    float: none;
+    text-align: left;
+    font-size: larger;
+  font-weight: bold;
+  }
   body {
     padding: 0;
     margin: 0;
@@ -283,8 +323,11 @@
   width: 100px;
   height: 40px;
 }
-#logbtn{ width: 100px;
-  height: 40px;
+#logbtn{ background-color:rgb(199, 12, 12) ;
+  border: 1px solid;
+  border-radius: 10px;
+  margin-left: 5px;
+  margin-right: 10px;
 }
 
 .form{
@@ -303,4 +346,7 @@
   background-color: white;
   border: 2px solid white;
   border-radius:30px;
+}
+.line{
+  border: 1px solid;
 }
