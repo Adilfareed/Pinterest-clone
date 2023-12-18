@@ -32,6 +32,7 @@
   
   .navbar .site-name {
     float: left;
+    margin-left: 20px;
   }
   .pinterest {
     color: rgb(158, 43, 43);
@@ -50,8 +51,6 @@
     padding: 0;
     margin: 0;
     min-height: 100vh;
-    background: -webkit-linear-gradient(transparent, rgba( 110, 110, 110, .3)), -webkit-linear-gradient(350deg, rgba(250, 214, 195, .8) 30%, #B0EAE8 120%);
-    background: linear-gradient(transparent, rgba( 110, 110, 110, .3)), linear-gradient(100deg, rgba(250, 214, 195, .8) 30%, #B0EAE8 120%);
   }
   
   .sidebar_wrapper {
@@ -62,7 +61,10 @@
   .about-dev {
     width: 100%;
     max-width: 26rem;
-   
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
 
     margin: auto;
     box-shadow: 2px 4px 2px -2px rgba(0, 0, 0, .3), -2px -4px 15px -2px rgba(0, 0, 0, .2);
@@ -105,13 +107,14 @@
     overflow: hidden;
     border-radius: 50%;
     margin: auto;
-    background: rgb(243, 240, 239);
+    background:white;
     border: 0.375rem solid rgb(248, 244, 242);
   }
   
   .profile-card_header img {
-    max-width: 100%;
-    filter: grayscale(100%);
+   width: 100%;
+   height: 100%;
+    
   }
   
   
@@ -136,7 +139,7 @@
     color: rgba(12, 0, 0, 0.95);
     margin-top: 0.25em;
     padding-top: 0.25em;
-    border-top: 0.075em solid rgb(247, 244, 243);
+    border-top: 0.075em solid white;
   }
   
   
@@ -144,7 +147,7 @@
   
   .profile-card_about {
     line-height: 1.5;
-    background: #f4f1f1;
+    background: white;
     padding: 1.5em 2rem;
     color: #222;
     font-family: 'Lato', sans-serif;
@@ -169,7 +172,7 @@
     /*  max-width: 13.8rem;
   */
     height: 1rem;
-    background: #c6f1eb;
+    background:white;
     left: -5px;
     top: 50%;
     z-index: -1;
@@ -320,14 +323,21 @@
     background-color: #df0812;
   }
 #button{
-  width: 100px;
-  height: 40px;
+ 
+  width: 25%;
+  height: 25%;
+  margin-left: 1px;
 }
 #logbtn{ background-color:rgb(199, 12, 12) ;
   border: 1px solid;
   border-radius: 10px;
+  margin-top: 5px;
   margin-left: 5px;
   margin-right: 10px;
+  height: 50px;
+  width:90px ;
+  text-align: center;
+
 }
 
 .form{
@@ -343,10 +353,19 @@
   margin-top: 10px;
   height: 100px;
   
-  background-color: white;
+  background-color: rgb(237, 231, 231);
   border: 2px solid white;
   border-radius:30px;
 }
 .line{
   border: 1px solid;
+}
+.sitename{
+  color: #df0812;
+  
+float: right;
+margin-top: 9px;
+font-size: x-large;
+font-weight: bolder;
+font-family: Georgia, 'Times New Roman', Times, serif;
 }
