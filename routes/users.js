@@ -1,8 +1,6 @@
 // Load environment variables from .env file
 require('dotenv').config();
 
-const express = require("express");
-const router = express.Router();
 const mongoose = require("mongoose");
 const plm = require("passport-local-mongoose");
 
@@ -12,10 +10,7 @@ const MONGODB_URI = process.env.MONGODB_URI;
 // Use async/await for cleaner code structure
 async function connectToDatabase() {
   try {
-    await mongoose.connect(MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(MONGODB_URI);
     console.log("Connected to the MongoDB database");
   } catch (error) {
     console.error("Error connecting to MongoDB:", error.message);

@@ -4,57 +4,81 @@ var usermodel = require("./users");
 const session = require("express-session");
 const passport = require("passport");
 const upload = require("./multer");
-const localStrategy = require("passport-local");
+const localStrategy = require("passport-local").Strategy;
 const postmodel = require("./posts");
+const flash = require("connect-flash");
+
+// Setup flash messages and session
+router.use(session({ secret: "secret", resave: false, saveUninitialized: false }));
+router.use(flash());
+router.use(passport.initialize());
+router.use(passport.session());
+
 passport.use(new localStrategy(usermodel.authenticate()));
 
 router.get("/signup", function (req, res) {
   res.render("index");
 });
+
 router.get("/login", function (req, res) {
   res.render("login", { error: req.flash("error") });
 });
-router.get("/", async function (req, res, next) {
-  const posts = await postmodel.find();
 
-  res.render("feed", { posts });
+router.get("/feed", async function (req, res, next) {
+  try {
+    const posts = await postmodel.find();
+    res.render("feed", { posts });
+  } catch (error) {
+    next(error);
+  }
 });
+
 router.get("/uploads", function (req, res) {
   res.render("uploads");
 });
-router.post("/upload", isLoggedIn, upload.single("file"),
-  async function (req, res) {
-   
-    if (!req.file) {
-      return res.status(400).send("no file was uploaded");
-    }
-    const user = await usermodel.findOne({username: req.session.passport.user});
-   
+
+router.post("/upload", isLoggedIn, upload.single("file"), async function (req, res) {
+  if (!req.file) {
+    return res.status(400).send("No file was uploaded");
+  }
+  try {
+    const user = await usermodel.findOne({ username: req.session.passport.user });
 
     const post = await postmodel.create({
       title: req.body.title,
       image: req.file.filename,
-      desciption: req.body.description,
+      description: req.body.description,
       user: user._id,
     });
 
     user.posts.push(post._id);
     await user.save();
-    res.redirect("profile");
-  }
-);
-router.post("/fileupload",isLoggedIn, upload.single("image") ,async function (req, res) {
-  const user = await usermodel.findOne({username: req.session.passport.user});
-  user.profileimage = req.file.filename;
-  await user.save();
     res.redirect("/profile");
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
 });
+
+router.post("/fileupload", isLoggedIn, upload.single("image"), async function (req, res) {
+  try {
+    const user = await usermodel.findOne({ username: req.session.passport.user });
+    user.profileimage = req.file.filename;
+    await user.save();
+    res.redirect("/profile");
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
 router.get("/profile", isLoggedIn, async function (req, res) {
-  user = await usermodel
-    .findOne({ username: req.session.passport.user })
-    .populate("posts");
-  res.render("profile"), { user };
+  try {
+    const user = await usermodel.findOne({ username: req.session.passport.user }).populate("posts");
+    res.render("profile", { user });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
 });
+
 router.post("/register", function (req, res) {
   var userdata = new usermodel({
     username: req.body.username,
@@ -62,23 +86,23 @@ router.post("/register", function (req, res) {
     fullname: req.body.fullname,
   });
 
-  usermodel
-    .register(userdata, req.body.password)
+  usermodel.register(userdata, req.body.password)
     .then(function (registereduser) {
       passport.authenticate("local")(req, res, function () {
         res.redirect("/profile");
       });
+    })
+    .catch(function (error) {
+      res.status(500).send(error.message);
     });
 });
-router.post(
-  "/login",
-  passport.authenticate("local", {
-    successRedirect: "/profile",
-    failureRedirect: "/login",
-    failureFlash: true,
-  }),
-  function (req, res) {}
-);
+
+router.post("/login", passport.authenticate("local", {
+  successRedirect: "/profile",
+  failureRedirect: "/login",
+  failureFlash: true,
+}), function (req, res) {});
+
 router.get("/logout", function (req, res, next) {
   req.logout(function (err) {
     if (err) {
@@ -87,6 +111,7 @@ router.get("/logout", function (req, res, next) {
     res.redirect("/");
   });
 });
+
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
